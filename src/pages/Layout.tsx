@@ -1,9 +1,14 @@
 import { Outlet } from "react-router-dom";
+import UserLog from "../components/homeLayout/UserLog.tsx";
+import Navigation from "../components/homeLayout/Navigation.tsx";
 
 function Layout() {
 	return (
 		<>
-			<div>Layout</div>
+			<header>
+				<UserLog />
+				<Navigation />
+			</header>
 			<Outlet />
 		</>
 	);

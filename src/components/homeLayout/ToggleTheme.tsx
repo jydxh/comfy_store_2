@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { toggleTheme } from "../../features/theme/themeSlice";
 import { Sun } from "lucide-react";
@@ -14,9 +13,11 @@ function ToggleTheme() {
 
 	return (
 		<div className="relative">
-			<button className="bg-white p-2 rounded-xl hover:bg-slate-50" onClick={handleClick}>
-				{theme === "light" && <Sun className="w-5 h-5" />}
-				{theme === "dark" && <MoonStar />}
+			<button
+				className="bg-white p-2 rounded-xl hover:bg-slate-50"
+				onClick={handleClick}>
+				{theme === "light" && <Sun className="w-6 h-6" />}
+				{theme === "dark" && <MoonStar className="w-6 h-6" />}
 			</button>
 			{/* {showSelect && (
 				<ul

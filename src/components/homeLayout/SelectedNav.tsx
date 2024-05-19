@@ -9,9 +9,8 @@ enum DisplayType {
 type ShowSelectOptionsState = DisplayType.show | DisplayType.hidden;
 //const baseClass = "border-2 ";
 function SelectedNav() {
-	const [showSelectOptions, setShowSelectOptions] = useState<ShowSelectOptionsState>(
-		DisplayType.hidden
-	);
+	const [showSelectOptions, setShowSelectOptions] =
+		useState<ShowSelectOptionsState>(DisplayType.hidden);
 	const toggleSelectOptions = () => {
 		setShowSelectOptions(prev => {
 			if (prev === DisplayType.show) {
@@ -25,7 +24,7 @@ function SelectedNav() {
 		<>
 			<div className="relative">
 				<button
-					className="p-2 rounded-xl bg-white hover:bg-gray-300 md:hidden ms-4"
+					className="p-2 rounded-xl bg-white hover:bg-gray-300 md:hidden "
 					onClick={toggleSelectOptions}>
 					<AlignLeft />
 				</button>
@@ -44,7 +43,9 @@ function SelectedNav() {
 								<NavLink
 									to={href}
 									className={({ isActive }) =>
-										isActive ? "text-blue-500 " + baseClass : (baseClass as string)
+										isActive
+											? "text-blue-500 " + baseClass
+											: (baseClass as string)
 									}>
 									{content}
 								</NavLink>

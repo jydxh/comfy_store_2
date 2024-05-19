@@ -12,6 +12,9 @@ import {
 	Orders,
 	ErrorPage,
 } from "./pages";
+import { useAppDispatch, useAppSelector } from "./hooks";
+import { setTheme } from "./features/theme/themeSlice";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
 	{
@@ -39,6 +42,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+	const theme = useAppSelector(state => state.theme.theme);
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(setTheme(theme));
+	}, [theme, dispatch]);
+
 	return <RouterProvider router={router} />;
 }
 

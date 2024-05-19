@@ -6,7 +6,7 @@ function ShopCart() {
 	return (
 		<div className="relative">
 			<Link to="/cart">
-				<button className="bg-white p-2 rounded-xl hover:bg-slate-50">
+				<button className="bg-white p-2 rounded-xl hover:bg-slate-50 dark:text-white dark:bg-slate-900">
 					<ShoppingCart className="w-6 h-6" />
 					<span
 						className="absolute bg-blue-500 text-white font-semibold text-sm

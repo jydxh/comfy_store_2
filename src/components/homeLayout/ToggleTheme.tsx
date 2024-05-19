@@ -14,7 +14,7 @@ function ToggleTheme() {
 	return (
 		<div className="relative">
 			<button
-				className="bg-white p-2 rounded-xl hover:bg-slate-50"
+				className="bg-white dark:bg-slate-900 dark:text-white p-2 rounded-xl hover:bg-slate-50"
 				onClick={handleClick}>
 				{theme === "light" && <Sun className="w-6 h-6" />}
 				{theme === "dark" && <MoonStar className="w-6 h-6" />}

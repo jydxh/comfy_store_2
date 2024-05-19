@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 
 function UserLog() {
-	const user = "jydxh";
-	//const user = null;
+	//const user = "jydxh";
+	const user = null;
 	const handleLogout = () => {};
 	return (
-		<div className="flex justify-center i my-4 mx-auto gap-x-6 md:justify-end max-w-[1280px] md:pe-12  ">
+		<div className="flex justify-center i my-4 mx-auto gap-x-12 md:justify-end max-w-[1280px] md:pe-12  ">
 			{user && (
 				<>
-					<p>Hello, {user}</p>
+					<p className="dark:text-white">Hello, {user}</p>
 					<button
 						className="text-blue-600 hover:underline hover:text-blue-700"
 						onClick={handleLogout}>
@@ -20,7 +20,7 @@ function UserLog() {
 				<>
 					<Link to="/login">
 						<button className="bg-blue-500 text-white py-2 px-3 rounded-2xl hover:bg-blue-400">
-							Sign in/ Geust
+							Sign in/ Guest
 						</button>
 					</Link>
 					<Link to="/register">

@@ -5,12 +5,12 @@ function UserLog() {
 	//const user = null;
 	const handleLogout = () => {};
 	return (
-		<div className="flex justify-center my-4 mx-auto gap-x-6 md:justify-end max-w-[1280px] md:pe-12  ">
+		<div className="flex justify-center i my-4 mx-auto gap-x-6 md:justify-end max-w-[1280px] md:pe-12  ">
 			{user && (
 				<>
 					<p>Hello, {user}</p>
 					<button
-						className="text-blue-600 underline hover:text-blue-700"
+						className="text-blue-600 hover:underline hover:text-blue-700"
 						onClick={handleLogout}>
 						Logout
 					</button>

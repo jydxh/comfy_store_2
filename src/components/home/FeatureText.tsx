@@ -11,7 +11,7 @@ function FeatureText() {
 				ratione, dolor dolorem magni, error veniam sed earum optio impedit quis
 				labore sit laborum eum.
 			</article>
-			<button className="mt-6 bg-blue-400 px-6 py-4 rounded-xl hover:bg-blue-300 ">
+			<button className="mt-6 bg-blue-400 px-6 py-4 rounded-xl hover:bg-blue-300 text-white dark:text-black font-medium">
 				<Link to="/products"> Our Product</Link>
 			</button>
 		</div>

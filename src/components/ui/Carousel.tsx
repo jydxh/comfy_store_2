@@ -88,12 +88,12 @@ function Carousel({ slides }: { slides: Slide[] }) {
 				</div>
 				<button
 					onClick={handlePrev}
-					className="absolute top-[50%] transform -translate-y-1/2 left-4  bg-slate-500 hover:bg-slate-400 rounded-full p-1">
+					className="absolute top-[50%] transform -translate-y-1/2 left-4 bg-slate-200 hover:bg-slate-100  dark:bg-slate-500 dark:hover:bg-slate-400 rounded-full p-1">
 					<ChevronLeft />
 				</button>
 				<button
 					onClick={handleNext}
-					className="absolute top-[50%]  transform -translate-y-1/2 right-4 bg-slate-500  hover:bg-slate-400 rounded-full p-1">
+					className="absolute top-[50%]  transform -translate-y-1/2 right-4 bg-slate-200 hover:bg-slate-100 dark:bg-slate-500  dark:hover:bg-slate-400 rounded-full p-1">
 					<ChevronRight />
 				</button>
 			</div>

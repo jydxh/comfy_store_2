@@ -1,3 +1,3 @@
 export default function formateToDollars(price: string): string {
-	return `$${Number(price) / 100}`;
+	return `$${Number(price) / 100}.00`;
 }

@@ -22,16 +22,16 @@ function SelectedNav() {
 	};
 	return (
 		<>
-			<div className="relative">
+			<div className="relative ">
 				<button
-					className="p-2 rounded-xl bg-white hover:bg-gray-300 md:hidden "
+					className="p-2 rounded-xl bg-white hover:bg-gray-300 md:hidden dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 "
 					onClick={toggleSelectOptions}>
 					<AlignLeft />
 				</button>
 				<ul
 					className={
 						showSelectOptions +
-						" absolute border-1 rounded-xl p-2 text-start bg-white capitalize top-14 left-5  shadow-md"
+						" absolute border-1 rounded-xl p-2 text-start bg-white capitalize top-14 left-5  shadow-md dark:bg-slate-800 dark:text-white"
 					}>
 					{options.map(opt => {
 						const { href, content } = opt;
@@ -39,7 +39,7 @@ function SelectedNav() {
 						return (
 							<li
 								key={content}
-								className="cursor-pointer hover:bg-slate-100  rounded-xl py-2 ">
+								className="cursor-pointer hover:bg-slate-100  rounded-xl py-2 hover:dark:bg-slate-700 ">
 								<NavLink
 									to={href}
 									className={({ isActive }) =>

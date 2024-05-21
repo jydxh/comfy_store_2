@@ -1,16 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import UserLog from "../components/homeLayout/UserLog.tsx";
 import Navigation from "../components/homeLayout/Navigation.tsx";
+import Loading from "@/components/ui/Loading.tsx";
 
 function Layout() {
-	console.log("layout rendered");
+	const { state } = useNavigation();
 	return (
 		<>
 			<header>
 				<UserLog />
 				<Navigation />
 			</header>
-			<Outlet />
+			{state === "loading" ? <Loading /> : <Outlet />}
 		</>
 	);
 }

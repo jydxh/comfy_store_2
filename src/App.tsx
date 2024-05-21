@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from "./hooks";
 import { setTheme } from "./features/theme/themeSlice";
 import { useEffect } from "react";
 import { loader as FeatureProductsLoader } from "@/components/home/FeatureProducts";
+import { loader as ProdcutsLoader } from "@/pages/Products";
 
 const router = createBrowserRouter([
 	{
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Home />, loader: FeatureProductsLoader },
 			{ path: "about", element: <About /> },
-			{ path: "products", element: <Products /> },
+			{ path: "products", element: <Products />, loader: ProdcutsLoader },
 			{ path: "products/:id", element: <SingleProduct /> },
 			{ path: "cart", element: <Cart /> },
 			{ path: "checkout", element: <Checkout /> },

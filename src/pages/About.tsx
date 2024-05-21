@@ -2,7 +2,7 @@ function About() {
 	return (
 		<main className="dark:text-white p-10 mt-16 flex flex-col justify-center text-center">
 			<h2 className="font-bold text-6xl ">
-				We Love{" "}
+				We Love
 				<span className="tracking-wider bg-blue-600 rounded-xl px-4">
 					Comfy
 				</span>

@@ -1,8 +1,26 @@
-function Freeshipping() {
+import { useState } from "react";
+
+function Freeshipping({
+	name,
+	defaultValue,
+}: {
+	name: string;
+	defaultValue: boolean;
+}) {
+	const [value, setValue] = useState(defaultValue);
+
 	return (
 		<div className="flex justify-between items-center">
-			<label htmlFor="shipping">Free Shipping</label>
-			<input type="checkbox" className="rounded-checkbox" />
+			<label htmlFor={name}>Free Shipping</label>
+			<input
+				type="checkbox"
+				name={name}
+				checked={value}
+				onChange={() => {
+					setValue(prev => !prev);
+				}}
+				className="rounded-checkbox"
+			/>
 		</div>
 	);
 }

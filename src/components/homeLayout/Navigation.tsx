@@ -5,7 +5,7 @@ import ShopCart from "./ShopCart";
 import NavLogo from "./NavLogo";
 function Navigation() {
 	return (
-		<div className="bg-slate-100 dark:bg-slate-700">
+		<div className="bg-slate-200 dark:bg-slate-700">
 			<div className="flex items-center justify-between py-4 px-8 mx-auto max-w-[1280px] ">
 				<div className="md:hidden ">
 					<SelectedNav />

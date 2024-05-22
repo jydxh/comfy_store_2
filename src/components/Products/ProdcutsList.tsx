@@ -9,8 +9,8 @@ function ProdcutsList() {
 	const [layout, setLayout] = useState<Layout>("grid");
 
 	const { data: products, meta } = useLoaderData() as ProductsRespone;
-	console.log("products:", products);
-	console.log("meta:", meta);
+	//	console.log("products:", products);
+	//console.log("meta:", meta);
 	const productNumber = meta.pagination.total;
 	return (
 		<>

@@ -5,6 +5,8 @@ export type ProductsRespone = {
 
 export type Meta = {
 	pagination: Pagination;
+	categories: string[];
+	companies: string[];
 };
 
 export type Pagination = {
@@ -31,3 +33,14 @@ export type Product = {
 		colors: string[];
 	};
 };
+
+export type SearchParams = {
+	search?: string;
+	category?: string;
+	company?: string;
+	order?: string;
+	price?: string;
+	shipping?: boolean;
+};
+
+export type ProductsResponeWithSearchParams = SearchParams | ProductsRespone;

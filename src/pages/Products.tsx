@@ -2,24 +2,29 @@ import ProdcutsFilter from "@/components/Products/ProdcutsFilter";
 import ProdcutsList from "@/components/Products/ProdcutsList";
 import Pagination from "@/components/ui/Pagination";
 import { customeFetch } from "@/utils/api";
-import { ProductsRespone } from "@/utils/types";
+import {
+	ProductsRespone,
+	ProductsResponeWithSearchParams,
+} from "@/utils/types";
 import { AxiosError } from "axios";
 import { LoaderFunction, useLoaderData } from "react-router-dom";
 
-export const loader: LoaderFunction =
-	async (): Promise<ProductsRespone | null> => {
-		try {
-			const response = await customeFetch<ProductsRespone>("/products");
-			console.log(response);
-			return response.data;
-		} catch (error) {
-			console.log(error);
-			throw new Response("failed to loaded products", {
-				status:
-					error instanceof AxiosError ? error.response?.data.error.status : 404,
-			});
-		}
-	};
+export const loader: LoaderFunction = async ({
+	request,
+}): Promise<ProductsResponeWithSearchParams | null> => {
+	console.log("request.url:", request.url);
+	try {
+		const response = await customeFetch<ProductsRespone>("/products");
+		console.log(response);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		throw new Response("failed to loaded products", {
+			status:
+				error instanceof AxiosError ? error.response?.data.error.status : 404,
+		});
+	}
+};
 
 function Products() {
 	const { meta } = useLoaderData() as ProductsRespone;

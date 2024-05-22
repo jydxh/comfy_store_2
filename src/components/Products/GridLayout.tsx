@@ -8,7 +8,7 @@ function GridLayout({ products }: { products: Product[] }) {
 				const { price, image, title } = product.attributes;
 				return (
 					<Link to={`/products/${product.id}`} key={title}>
-						<div className="shadow p-4 border dark:border-slate-500 rounded-xl hover:bg-slate-50 dark:hover:bg-gray-800">
+						<div className="shadow p-4 border-2 dark:border-slate-500 rounded-xl hover:bg-slate-100 dark:hover:bg-gray-800">
 							<img
 								src={image}
 								className="rounded-xl h-[16rem] w-full object-cover"

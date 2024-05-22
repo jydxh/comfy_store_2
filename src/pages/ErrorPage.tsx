@@ -23,6 +23,12 @@ function ErrorPage() {
 				</div>
 			</main>
 		);
+	} else {
+		return (
+			<main className="grid min-h-[100vh] place-items-center px-8 dark:text-white">
+				Cannot find the page!
+			</main>
+		);
 	}
 }
 export default ErrorPage;

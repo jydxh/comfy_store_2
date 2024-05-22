@@ -1,8 +1,12 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import SelectList from "./SelectList";
 import PriceBar from "./PriceBar";
 import Freeshipping from "./Freeshipping";
+import { ProductsRespone } from "@/utils/types";
 function ProdcutsFilter() {
+	const { meta } = useLoaderData() as ProductsRespone;
+	const { categories, companies } = meta;
+	const orderBy = ["a-z", "z-a", "high", "low"];
 	return (
 		<div className="mt-12 border shadow-slate-800 p-4 rounded-xl ">
 			<Form
@@ -21,40 +25,40 @@ function ProdcutsFilter() {
 					<SelectList
 						title="Select Category"
 						name="category"
-						selection={["a", "b", "c"]}
-						defaultValue="a"
+						selection={categories}
+						defaultValue={categories[0]}
+					/>
+				</div>
+				<div>
+					<SelectList
+						title="Select Company"
+						name="category"
+						selection={companies}
+						defaultValue={companies[0]}
 					/>
 				</div>
 				<div>
 					<SelectList
 						title="Select Category"
 						name="category"
-						selection={["a", "b", "c"]}
-						defaultValue="a"
+						selection={orderBy}
+						defaultValue={orderBy[0]}
 					/>
 				</div>
 				<div>
-					<SelectList
-						title="Select Category"
-						name="category"
-						selection={["a", "b", "c"]}
-						defaultValue="a"
-					/>
-				</div>
-				<div>
-					<PriceBar />
+					<PriceBar name="price" defaultValue={100000} />
 				</div>
 				<div className="mt-2">
-					<Freeshipping />
+					<Freeshipping name="shipping" defaultValue={true} />
 				</div>
 				<button
 					type="submit"
-					className="w-full bg-blue-600 p-2 rounded-xl hover:bg-blue-500">
+					className="w-full bg-blue-600 p-2 rounded-xl hover:bg-blue-500 text-white">
 					Search
 				</button>
 				<button
 					type="reset"
-					className="w-full border border-slate-500 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">
+					className="w-full dark:text-white border border-slate-500 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">
 					Reset
 				</button>
 			</Form>

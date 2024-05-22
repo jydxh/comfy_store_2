@@ -15,7 +15,7 @@ function Pagination({
 	totalItem: number;
 	pageSize: number;
 	pathName: string;
-	searchParams: string;
+	searchParams?: string;
 }) {
 	const navigate = useNavigate();
 

@@ -43,4 +43,4 @@ export type SearchParams = {
 	shipping?: boolean;
 };
 
-export type ProductsResponeWithSearchParams = SearchParams | ProductsRespone;
+export type ProductsResponeWithSearchParams = SearchParams & ProductsRespone;

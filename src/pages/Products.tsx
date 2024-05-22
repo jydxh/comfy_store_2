@@ -5,6 +5,7 @@ import { customeFetch } from "@/utils/api";
 import {
 	ProductsRespone,
 	ProductsResponeWithSearchParams,
+	SearchParams,
 } from "@/utils/types";
 import { AxiosError } from "axios";
 import { LoaderFunction, useLoaderData } from "react-router-dom";
@@ -12,11 +13,17 @@ import { LoaderFunction, useLoaderData } from "react-router-dom";
 export const loader: LoaderFunction = async ({
 	request,
 }): Promise<ProductsResponeWithSearchParams | null> => {
-	console.log("request.url:", request.url);
+	const searchParams = Object.fromEntries(
+		new URL(request.url).searchParams
+	) as SearchParams;
+
 	try {
-		const response = await customeFetch<ProductsRespone>("/products");
+		const response = await customeFetch<ProductsRespone>("/products", {
+			params: searchParams,
+		});
 		console.log(response);
-		return response.data;
+		const productRespone = response.data as ProductsRespone;
+		return { ...productRespone, ...searchParams };
 	} catch (error) {
 		console.log(error);
 		throw new Response("failed to loaded products", {

@@ -2,11 +2,15 @@ import { Form, useLoaderData } from "react-router-dom";
 import SelectList from "./SelectList";
 import PriceBar from "./PriceBar";
 import Freeshipping from "./Freeshipping";
-import { ProductsRespone } from "@/utils/types";
+import { ProductsResponeWithSearchParams } from "@/utils/types";
+import { useState } from "react";
 function ProdcutsFilter() {
-	const { meta } = useLoaderData() as ProductsRespone;
+	const { meta, order, company, category, price, search, shipping } =
+		useLoaderData() as ProductsResponeWithSearchParams;
+	console.log(order, company, category, price);
 	const { categories, companies } = meta;
 	const orderBy = ["a-z", "z-a", "high", "low"];
+	const [inputValue, setInputValue] = useState(search);
 	return (
 		<div className="mt-12 border shadow-slate-800 p-4 rounded-xl ">
 			<Form
@@ -18,6 +22,10 @@ function ProdcutsFilter() {
 						type="text"
 						id="search"
 						name="search"
+						onChange={evt => {
+							setInputValue(evt.target.value);
+						}}
+						value={inputValue}
 						className="border rounded-xl mt-2 p-2 focus:ring-blue-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-blue-500 focus:outline-0 dark:bg-slate-900"
 					/>
 				</div>
@@ -26,30 +34,30 @@ function ProdcutsFilter() {
 						title="Select Category"
 						name="category"
 						selection={categories}
-						defaultValue={categories[0]}
+						defaultValue={category || categories[0]}
 					/>
 				</div>
 				<div>
 					<SelectList
 						title="Select Company"
-						name="category"
+						name="company"
 						selection={companies}
-						defaultValue={companies[0]}
+						defaultValue={company || companies[0]}
 					/>
 				</div>
 				<div>
 					<SelectList
 						title="Select Category"
-						name="category"
+						name="order"
 						selection={orderBy}
-						defaultValue={orderBy[0]}
+						defaultValue={order || orderBy[0]}
 					/>
 				</div>
 				<div>
-					<PriceBar name="price" defaultValue={100000} />
+					<PriceBar name="price" defaultValue={price || 100000} />
 				</div>
 				<div className="mt-2">
-					<Freeshipping name="shipping" defaultValue={true} />
+					<Freeshipping name="shipping" defaultValue={shipping || false} />
 				</div>
 				<button
 					type="submit"

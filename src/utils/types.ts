@@ -16,6 +16,11 @@ export type Pagination = {
 	total: number;
 };
 
+export type SingleProductResponse = {
+	data: Product;
+	meta: Record<string, never>;
+};
+
 export type Product = {
 	id: string;
 	attributes: {

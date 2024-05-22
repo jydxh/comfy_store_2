@@ -1,8 +1,10 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const className =
 	"bg-slate-200 p-2 rounded-full hover:bg-slate-100 dark:bg-slate-700 hover:dark:bg-slate-800 disabled:bg-gray-100 disabled:hover:bg-gray-100 dark:disabled:bg-gray-500 dark:disabled:hover:bg-gray-500  ";
+
+const currentPageClass = " bg-blue-400";
 
 function Pagination({
 	current,
@@ -24,6 +26,11 @@ function Pagination({
 	let pageArray = Array.from({ length: pageSize }, (_, index) => start + index);
 
 	const pageCount = Math.ceil(totalItem / pageSize);
+
+	const handleClick = (item: number) => {
+		if (current === item) return;
+		navigate(`/products?page=${item}&${searchParams}`);
+	};
 
 	const handleNext = () => {
 		if (current === pageCount) {
@@ -59,11 +66,19 @@ function Pagination({
 				<ArrowLeft />
 			</button>
 
-			<ul className="flex gap-4">
+			<ul className="flex">
 				{pageArray.map(item => {
 					return (
-						<li key={item} className={className}>
-							<Link to={`/products?page=${item}&${searchParams}`}>{item}</Link>
+						<li
+							key={item}
+							className={` py-[0.5rem] px-[1rem] rounded-full hover:bg-slate-200 dark:hover:bg-slate-600  + ${
+								current === item && currentPageClass
+							}`}>
+							<button
+								onClick={() => handleClick(item)}
+								disabled={item === current}>
+								{item}
+							</button>
 						</li>
 					);
 				})}

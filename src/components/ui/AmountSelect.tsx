@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/hooks";
+import { updateCart } from "@/features/cart/cartSlice";
 export enum Mode {
 	SingleProduct = "singleProduct",
 	Cart = "cart",
@@ -7,16 +9,22 @@ function AmountSelect({
 	amount,
 	mode,
 	setAmount,
+	id,
 }: {
-	amount?: number;
+	amount: number;
 	mode: Mode;
 	setAmount: (value: number) => void;
+	id?: string;
 }) {
-	const array = Array.from({ length: 10 }, (_, index) => index + 1);
+	const dispatch = useAppDispatch();
+	let array = Array.from({ length: 10 }, (_, index) => index + 1);
 
-	/* if (mode === Mode.Cart && amount) {
-		array = Array.from({ length: 10 }, (_, index) => index + amount - 4);
-	} */
+	if (mode === Mode.Cart && amount > 9) {
+		array = Array.from({ length: 20 }, (_, index) => index + amount - 9);
+	}
+	if (mode === Mode.Cart && amount < 9) {
+		array = Array.from({ length: 20 }, (_, index) => index + 1);
+	}
 	return (
 		<div className="flex flex-col gap-y-2">
 			<label>Amount: </label>
@@ -24,6 +32,9 @@ function AmountSelect({
 				value={amount}
 				onChange={evt => {
 					setAmount(Number(evt.target.value));
+					if (Mode.Cart && id) {
+						dispatch(updateCart({ id, amount: evt.target.value }));
+					}
 				}}
 				name="amount"
 				id="amount"

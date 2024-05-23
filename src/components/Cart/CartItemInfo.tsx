@@ -1,12 +1,25 @@
-import { CartItem } from "@/features/cart/cartSlice";
+import { CartItem, removeItem } from "@/features/cart/cartSlice";
 import AmountSelect from "../ui/AmountSelect";
 import { Mode } from "../ui/AmountSelect";
 import { useState } from "react";
 import formateToDollars from "@/utils/formateToDollars";
+import { useAppDispatch } from "@/hooks";
 
 function CartItemInfo({ item }: { item: CartItem }) {
-	const { amount: quantity, color, company, image, price, title } = item;
+	const {
+		amount: quantity,
+		color,
+		company,
+		image,
+		price,
+		title,
+		cartId,
+	} = item;
+	const dispatch = useAppDispatch();
 	const [amount, setAmount] = useState(quantity);
+	const handleRemove = () => {
+		dispatch(removeItem({ id: cartId }));
+	};
 	return (
 		<div className="border rounded-xl dark:border-white border-state-500 p-4 grid grid-cols-1 mt-8 md:grid-cols-4 gap-x-8">
 			<img
@@ -25,8 +38,15 @@ function CartItemInfo({ item }: { item: CartItem }) {
 				</p>
 			</div>
 			<div>
-				<AmountSelect mode={Mode.Cart} setAmount={setAmount} amount={amount} />
-				<button className="w-4 mt-4 text-blue-500 hover:underline">
+				<AmountSelect
+					mode={Mode.Cart}
+					setAmount={setAmount}
+					amount={amount}
+					id={item.cartId}
+				/>
+				<button
+					onClick={handleRemove}
+					className="w-4 mt-4 text-blue-500 hover:underline">
 					Remove
 				</button>
 			</div>

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { taxRate } from "@/utils/taxRate";
+import { act } from "react";
+import { PlayCircle } from "lucide-react";
 
 export type CartItem = {
 	id: string;
@@ -57,6 +59,12 @@ export const cartSlice = createSlice({
 			}
 			state.totalQuantity += cartItem.amount;
 			state.subOrderPrice += cartItem.amount * Number(cartItem.price);
+			/* state.tax = (state.subOrderPrice + state.shipping) * taxRate;
+			state.orderTotalPrice = state.subOrderPrice + state.tax;
+			localStorage.setItem("cart", JSON.stringify(state)); */
+			cartSlice.caseReducers.calculateTotal(state);
+		},
+		calculateTotal(state) {
 			state.tax = (state.subOrderPrice + state.shipping) * taxRate;
 			state.orderTotalPrice = state.subOrderPrice + state.tax;
 			localStorage.setItem("cart", JSON.stringify(state));
@@ -65,8 +73,41 @@ export const cartSlice = createSlice({
 			localStorage.setItem("cart", JSON.stringify(defaultState));
 			return defaultState;
 		},
+		removeItem(state, action: PayloadAction<{ id: string }>) {
+			const { id } = action.payload;
+			const theItem = state.cartItems.find(item => item.cartId === id);
+			if (theItem) {
+				const quantityToBeRemoved = theItem.amount;
+				const priceToBeReduced = Number(theItem.price) * quantityToBeRemoved;
+				state.cartItems = state.cartItems.filter(item => item !== theItem);
+				state.totalQuantity -= quantityToBeRemoved;
+				state.subOrderPrice -= priceToBeReduced;
+				cartSlice.caseReducers.calculateTotal(state);
+			} else {
+				console.log("enter the cartID to delete the item");
+			}
+		},
+		updateCart(
+			state,
+			action: PayloadAction<{ id: string; amount: string | number }>
+		) {
+			const updateItem = action.payload;
+			const theItem = state.cartItems.find(
+				item => item.cartId === updateItem.id
+			) as CartItem;
+			if (theItem) {
+				const amountDiff = Number(updateItem.amount) - theItem.amount;
+				theItem.amount = Number(updateItem.amount);
+				state.totalQuantity += amountDiff;
+				state.subOrderPrice += Number(theItem.price) * amountDiff;
+				cartSlice.caseReducers.calculateTotal(state);
+			} else {
+				console.log("error, please pass the id into updateCart actions");
+			}
+		},
 	},
 });
 
 export default cartSlice.reducer;
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateCart, clearCart, removeItem } =
+	cartSlice.actions;

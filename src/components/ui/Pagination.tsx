@@ -69,12 +69,11 @@ function Pagination({
 			<ul className="flex">
 				{pageArray.map(item => {
 					return (
-						<li
-							key={item}
-							className={` py-[0.5rem] px-[1rem] rounded-full hover:bg-slate-200 dark:hover:bg-slate-600  + ${
-								current === item && currentPageClass
-							}`}>
+						<li key={item}>
 							<button
+								className={` py-[0.5rem] px-[1rem] rounded-full hover:bg-slate-200 dark:hover:bg-slate-600  + ${
+									current === item && currentPageClass
+								}`}
 								onClick={() => handleClick(item)}
 								disabled={item === current}>
 								{item}

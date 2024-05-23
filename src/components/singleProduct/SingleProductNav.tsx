@@ -3,7 +3,7 @@ function SingleProductNav() {
 	const linkClass =
 		"cursor-pointer hover:underline text-blue-500 hover:text-blue-600";
 	return (
-		<div>
+		<div className="flex ">
 			<Link to="/" className={linkClass}>
 				Home
 			</Link>

@@ -6,28 +6,30 @@ import ColorSelect from "./ColorSelect";
 import AmountSelect from "../ui/AmountSelect";
 import { Mode } from "@/components/ui/AmountSelect";
 import { useAppDispatch } from "@/hooks";
+import { addToCart, type CartItem } from "@/features/cart/cartSlice";
+
 function SingleProductDetail() {
 	const data = useLoaderData() as SingleProductResponse;
 	const dispatch = useAppDispatch();
+
+	const [amount, setAmount] = useState(1);
 	//console.log(data);
 	const { image, title, company, price, description, colors } =
 		data.data.attributes;
 	const [colorValue, setColorValue] = useState(colors[0]);
-	const obj = {
-		cartItem: {
-			id: data.data.id,
-			image,
-			title,
-			company,
-			price,
-			description,
-			color: colorValue,
-			cartId: colorValue + data.data.id,
-		},
+	const obj: CartItem = {
+		id: data.data.id,
+		image,
+		title,
+		company,
+		price,
+		description,
+		color: colorValue,
+		cartId: colorValue + data.data.id,
+		amount,
 	};
 	const handleClick = () => {
-		console.log(obj);
-		//dispatch(addToCart(obj));
+		dispatch(addToCart(obj));
 	};
 	return (
 		<div className="my-8 grid grid-cols-1 lg:grid-cols-2 gap-y-8 gap-x-4">
@@ -45,12 +47,17 @@ function SingleProductDetail() {
 					{formateToDollars(price)}
 				</p>
 				<p className="leading-8">{description}</p>
+
 				<ColorSelect
 					colors={colors}
 					value={colorValue}
 					setColorValue={setColorValue}
 				/>
-				<AmountSelect mode={Mode.SingleProduct} />
+				<AmountSelect
+					mode={Mode.SingleProduct}
+					amount={amount}
+					setAmount={setAmount}
+				/>
 				<button
 					onClick={handleClick}
 					className="bg-blue-500 hover:bg-blue-400 w-[8rem] p-2 rounded-xl mt-4">

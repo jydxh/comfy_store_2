@@ -1,8 +1,9 @@
+import { useAppSelector } from "@/hooks";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function ShopCart() {
-	const cartTotalItems = 0;
+	const cartTotalItems = useAppSelector(state => state.cart.totalQuantity);
 	return (
 		<div className="relative">
 			<Link to="/cart">

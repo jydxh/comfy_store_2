@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { taxRate } from "@/utils/taxRate";
-import { act } from "react";
-import { PlayCircle } from "lucide-react";
 
 export type CartItem = {
 	id: string;

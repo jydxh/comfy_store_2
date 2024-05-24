@@ -3,9 +3,12 @@ import CartItemInfo from "@/components/Cart/CartItemInfo";
 import { useAppSelector } from "@/hooks";
 import OrderSummary from "@/components/ui/OrderSummary";
 import { Link } from "react-router-dom";
-function Cart() {
-	const { cartItems } = useAppSelector(state => state.cart);
 
+function Cart() {
+	const className = "bg-blue-500 w-full p-2 rounded-xl font-semibold";
+	const { cartItems } = useAppSelector(state => state.cart);
+	//const user = 1;
+	const user = null;
 	return (
 		<main className="max-w-[1280px] mx-auto px-8 dark:text-white mt-16">
 			{cartItems.length === 0 && (
@@ -27,7 +30,15 @@ function Cart() {
 						</section>
 						<section className="lg:col-span-1">
 							<OrderSummary />
-							<button> Process to Checkout</button>
+							{user ? (
+								<button className={className}>
+									<Link to="/checkout">Process to Checkout</Link>
+								</button>
+							) : (
+								<button className={className}>
+									<Link to="/login">Login to Checkout</Link>
+								</button>
+							)}
 						</section>
 					</div>
 				</>

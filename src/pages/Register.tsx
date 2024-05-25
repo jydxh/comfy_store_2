@@ -14,7 +14,7 @@ import { useEffect } from "react";
 
 export const action: ActionFunction = async ({
 	request,
-}): Promise<Response | null> => {
+}): Promise<Response> => {
 	const formData = await request.formData();
 	const param = Object.fromEntries(formData);
 	try {

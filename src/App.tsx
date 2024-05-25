@@ -20,6 +20,7 @@ import { loader as ProdcutsLoader } from "@/pages/Products";
 import { loader as SingleProductLoader } from "@/pages/SingleProduct";
 
 import { action as RegisterAction } from "@/pages/Register";
+import { action as LoginAction } from "@/pages/Login";
 
 const router = createBrowserRouter([
 	{
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
 	{
 		path: "/login",
 		element: <Login />,
+		action: LoginAction,
 	},
 	{
 		path: "/register",

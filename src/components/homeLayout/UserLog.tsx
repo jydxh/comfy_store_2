@@ -1,14 +1,20 @@
+import { logout } from "@/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { Link } from "react-router-dom";
 
 function UserLog() {
 	//const user = "jydxh";
-	const user = null;
-	const handleLogout = () => {};
+	//const user = null;
+	const { username } = useAppSelector(state => state.user.user);
+	const dispatch = useAppDispatch();
+	const handleLogout = () => {
+		dispatch(logout());
+	};
 	return (
 		<div className="flex justify-center i my-4 mx-auto gap-x-12 md:justify-end max-w-[1280px] md:pe-12  ">
-			{user && (
+			{username && (
 				<>
-					<p className="dark:text-white">Hello, {user}</p>
+					<p className="dark:text-white">Hello, {username}</p>
 					<button
 						className="text-blue-600 hover:underline hover:text-blue-700"
 						onClick={handleLogout}>
@@ -16,7 +22,7 @@ function UserLog() {
 					</button>
 				</>
 			)}
-			{!user && (
+			{!username && (
 				<>
 					<Link to="/login">
 						<button className="bg-blue-500 text-white py-2 px-3 rounded-2xl hover:bg-blue-400">

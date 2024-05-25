@@ -21,6 +21,7 @@ import { loader as SingleProductLoader } from "@/pages/SingleProduct";
 
 import { action as RegisterAction } from "@/pages/Register";
 import { action as LoginAction } from "@/pages/Login";
+import { action as CheckoutAction } from "@/pages/Checkout";
 
 const router = createBrowserRouter([
 	{
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
 				loader: SingleProductLoader,
 			},
 			{ path: "cart", element: <Cart /> },
-			{ path: "checkout", element: <ProtecedCheckout /> },
+			{
+				path: "checkout",
+				element: <ProtecedCheckout />,
+				action: CheckoutAction,
+			},
 			{ path: "orders", element: <ProtecedOrders /> },
 		],
 	},

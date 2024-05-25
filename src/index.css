@@ -54,3 +54,17 @@ input[type="range"]::-webkit-slider-thumb {
 	left: 50%;
 	transform: translate(-50%, -60%) rotate(45deg);
 }
+
+@layer components {
+	.input-field {
+		@apply bg-slate-900; /* or whatever background color you want */
+	}
+
+	.input-field:-webkit-autofill,
+	.input-field:-webkit-autofill:hover,
+	.input-field:-webkit-autofill:focus {
+		-webkit-box-shadow: 0 0 0px 1000px #e2e8f0 inset !important; /* use the same color */
+		box-shadow: 0 0 0px 1000px #e2e8f0 inset !important;
+		background-color: #e2e8f0 !important; /* ensure the background color is consistent */
+	}
+}

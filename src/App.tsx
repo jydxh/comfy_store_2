@@ -19,6 +19,8 @@ import { loader as FeatureProductsLoader } from "@/components/home/FeatureProduc
 import { loader as ProdcutsLoader } from "@/pages/Products";
 import { loader as SingleProductLoader } from "@/pages/SingleProduct";
 
+import { action as RegisterAction } from "@/pages/Register";
+
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -45,6 +47,7 @@ const router = createBrowserRouter([
 	{
 		path: "/register",
 		element: <Register />,
+		action: RegisterAction,
 	},
 ]);
 

@@ -5,10 +5,10 @@ import OrderSummary from "@/components/ui/OrderSummary";
 import { Link } from "react-router-dom";
 
 function Cart() {
-	const className = "bg-blue-500 w-full p-2 rounded-xl font-semibold";
+	const className =
+		"bg-blue-500 w-full p-2 rounded-xl font-semibold block text-center";
 	const { cartItems } = useAppSelector(state => state.cart);
-	//const user = 1;
-	const user = null;
+	const { username } = useAppSelector(state => state.user.user);
 	return (
 		<main className="max-w-[1280px] mx-auto px-8 dark:text-white mt-16">
 			{cartItems.length === 0 && (
@@ -30,14 +30,14 @@ function Cart() {
 						</section>
 						<section className="lg:col-span-1">
 							<OrderSummary />
-							{user ? (
-								<button className={className}>
-									<Link to="/checkout">Process to Checkout</Link>
-								</button>
+							{username ? (
+								<Link to="/checkout" className={className}>
+									<button>Process to Checkout</button>
+								</Link>
 							) : (
-								<button className={className}>
-									<Link to="/login">Login to Checkout</Link>
-								</button>
+								<Link to="/login" className={className}>
+									<button>Login to Checkout</button>
+								</Link>
 							)}
 						</section>
 					</div>

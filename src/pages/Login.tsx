@@ -53,6 +53,7 @@ function Login() {
 	const [isLogingGuest, setIsLogingGuest] = useState(false);
 
 	const loginGuest = async (): Promise<Response | undefined> => {
+		console.log("click");
 		setIsLogingGuest(true);
 		const data = {
 			identifier: "test@test.com",
@@ -108,6 +109,7 @@ function Login() {
 				{state === "idle" && !actionData?.success && (
 					<>
 						<button
+							disabled={isLogingGuest}
 							onClick={loginGuest}
 							className="dark:bg-slate-700 dark:hover:bg-slate-900 bg-slate-400 hover:bg-slate-500 w-full p-2 rounded-xl mt-8">
 							{isLogingGuest ? "Logging as Guest..." : "Guest User"}

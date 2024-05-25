@@ -1,15 +1,16 @@
 import {
 	ActionFunction,
 	Form,
-	redirect,
 	useNavigation,
 	json,
 	useActionData,
+	useNavigate,
 } from "react-router-dom";
 import { Link } from "react-router-dom";
 import FormRow from "@/components/ui/FormRow";
 import { customeFetch } from "@/utils/api";
 import { AxiosError } from "axios";
+import { useEffect } from "react";
 
 export const action: ActionFunction = async ({
 	request,
@@ -19,8 +20,10 @@ export const action: ActionFunction = async ({
 	try {
 		const response = await customeFetch.post("/auth/local/register", param);
 		console.log(response.data);
-
-		return redirect("/login");
+		return json({
+			success: "Registration successful! Redirecting to login...",
+		});
+		//return redirect("/login");
 	} catch (error) {
 		//console.log(error);
 		const errorMessage =
@@ -31,9 +34,24 @@ export const action: ActionFunction = async ({
 	}
 };
 
+type ActionData = {
+	error?: string;
+	success?: string;
+};
+
 function Register() {
 	const { state } = useNavigation();
-	const actiondata = useActionData() as { error: string };
+	const actiondata = useActionData() as ActionData;
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (actiondata?.success) {
+			const timer = setTimeout(() => {
+				navigate("/login");
+			}, 3000);
+			return () => clearTimeout(timer);
+		}
+	}, [actiondata, navigate]);
 
 	return (
 		<main className="grid place-items-center h-[100vh]">
@@ -60,6 +78,11 @@ function Register() {
 				{actiondata?.error && (
 					<div className="mt-4 text-center text-red-600 font-semibold">
 						{actiondata.error}
+					</div>
+				)}
+				{actiondata?.success && (
+					<div className="mt-4 text-center text-blue-600 font-semibold">
+						{actiondata.success}
 					</div>
 				)}
 

@@ -2,6 +2,7 @@ import { AlignLeft } from "lucide-react";
 import { useState } from "react";
 import { options } from "../../utils/navigaitionOptions";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "@/hooks";
 enum DisplayType {
 	show = "show",
 	hidden = "hidden",
@@ -20,6 +21,9 @@ function SelectedNav() {
 			}
 		});
 	};
+
+	const { username } = useAppSelector(state => state.user.user);
+	const filteredOptions = username ? options : options.slice(0, 4);
 	return (
 		<>
 			<div className="relative ">
@@ -33,7 +37,7 @@ function SelectedNav() {
 						showSelectOptions +
 						" absolute border-1 rounded-xl p-2 text-start bg-white capitalize top-14 left-5  shadow-md dark:bg-slate-800 dark:text-white"
 					}>
-					{options.map(opt => {
+					{filteredOptions.map(opt => {
 						const { href, content } = opt;
 						const baseClass = " block ps-4 w-[12rem]";
 						return (

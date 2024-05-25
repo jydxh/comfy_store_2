@@ -15,7 +15,7 @@ function Row({
 			<div
 				className={`${
 					lastLine ? " mt-4 font-semibold " : " font-normal"
-				} flex justify-between items-center  p-2 mb-1  `}>
+				} flex justify-between items-center  p-4 mb-1  `}>
 				<p>{title}</p> <p>{formateToDollars(price)}</p>
 			</div>
 			{!lastLine ? <hr className="bg-slate-300 h-[1px]" /> : ""}

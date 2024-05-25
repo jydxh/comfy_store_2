@@ -8,10 +8,10 @@ import {
 	Products,
 	SingleProduct,
 	Cart,
-	Checkout,
-	Orders,
 	ErrorPage,
 } from "./pages";
+import ProtecedCheckout from "./routes/ProtecedCheckout";
+import ProtecedOrders from "./routes/ProtecedOrders";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { setTheme } from "./features/theme/themeSlice";
 import { useEffect } from "react";
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
 				loader: SingleProductLoader,
 			},
 			{ path: "cart", element: <Cart /> },
-			{ path: "checkout", element: <Checkout /> },
-			{ path: "orders", element: <Orders /> },
+			{ path: "checkout", element: <ProtecedCheckout /> },
+			{ path: "orders", element: <ProtecedOrders /> },
 		],
 	},
 	{

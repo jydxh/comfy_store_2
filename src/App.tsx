@@ -48,12 +48,12 @@ const router = createBrowserRouter([
 		],
 	},
 	{
-		path: "/comfy_store_2/login",
+		path: "/login",
 		element: <Login />,
 		action: LoginAction,
 	},
 	{
-		path: "/comfy_store_2/register",
+		path: "/register",
 		element: <Register />,
 		action: RegisterAction,
 	},

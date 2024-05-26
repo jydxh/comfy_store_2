@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+	//createBrowserRouter,
+	RouterProvider,
+	createHashRouter,
+} from "react-router-dom";
 import {
 	Home,
 	Login,
@@ -24,9 +28,10 @@ import { action as RegisterAction } from "@/pages/Register";
 import { action as LoginAction } from "@/pages/Login";
 import { action as CheckoutAction } from "@/pages/Checkout";
 
-const router = createBrowserRouter([
+// const router = createBrowserRouter([
+const router = createHashRouter([
 	{
-		path: "/comfy_store_2/",
+		path: "/",
 		element: <Layout />,
 		errorElement: <ErrorPage />,
 		children: [

@@ -11,7 +11,7 @@ function NavInLine() {
 			{filteredOptions.map(opt => {
 				const { content, href } = opt;
 				return (
-					<li key={content}>
+					<li key={content} className="cursor-pointer">
 						<NavLink
 							to={href}
 							className={({ isActive }) =>

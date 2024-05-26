@@ -22,6 +22,7 @@ function useProducts(searchParams: SearchParams) {
 	return useQuery({
 		queryKey: ["products", searchParams],
 		queryFn: () => fetchProducts(searchParams),
+		staleTime: 5 * 60000, // set to cache data for 5 mins
 	});
 }
 export default useProducts;

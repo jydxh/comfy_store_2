@@ -1,6 +1,6 @@
 import {
-	//createBrowserRouter,
 	RouterProvider,
+	//createBrowserRouter,
 	createHashRouter,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -29,7 +29,7 @@ import { action as RegisterAction } from "@/pages/Register";
 import { action as LoginAction } from "@/pages/Login";
 import { action as CheckoutAction } from "@/pages/Checkout";
 
-// const router = createBrowserRouter([
+//const router = createBrowserRouter([
 const router = createHashRouter([
 	{
 		path: "/",

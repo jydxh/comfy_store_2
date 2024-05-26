@@ -13,6 +13,7 @@ function Freeshipping({
 		<div className="flex justify-between items-center">
 			<label htmlFor={name}>Free Shipping</label>
 			<input
+				id={name}
 				type="checkbox"
 				name={name}
 				checked={value}

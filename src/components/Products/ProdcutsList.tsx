@@ -1,17 +1,14 @@
-import { ProductsRespone } from "@/utils/types";
 import { LayoutGrid, List } from "lucide-react";
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+
 import GridLayout from "./GridLayout";
 import ListLayout from "./ListLayout";
-function ProdcutsList() {
+import { ProductsRespone } from "@/utils/types";
+function ProdcutsList({ products }: { products: ProductsRespone }) {
 	type Layout = "grid" | "list";
 	const [layout, setLayout] = useState<Layout>("grid");
 
-	const { data: products, meta } = useLoaderData() as ProductsRespone;
-	//	console.log("products:", products);
-	//console.log("meta:", meta);
-	const productNumber = meta.pagination.total;
+	const productNumber = products.meta.pagination.total;
 	return (
 		<>
 			<section className="flex justify-between items-center my-4">
@@ -40,8 +37,8 @@ function ProdcutsList() {
 				</div>
 			</section>
 			<hr />
-			{layout === "grid" && <GridLayout products={products} />}
-			{layout === "list" && <ListLayout products={products} />}
+			{layout === "grid" && <GridLayout products={products.data} />}
+			{layout === "list" && <ListLayout products={products.data} />}
 		</>
 	);
 }

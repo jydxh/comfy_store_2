@@ -1,12 +1,17 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form } from "react-router-dom";
 import SelectList from "./SelectList";
 import PriceBar from "./PriceBar";
 import Freeshipping from "./Freeshipping";
-import { ProductsResponeWithSearchParams } from "@/utils/types";
+import { Meta, SearchParams } from "@/utils/types";
 import { useState } from "react";
-function ProdcutsFilter() {
-	const { meta, order, company, category, price, search, shipping } =
-		useLoaderData() as ProductsResponeWithSearchParams;
+function ProdcutsFilter({
+	serachParam,
+	meta,
+}: {
+	serachParam: SearchParams;
+	meta: Meta;
+}) {
+	const { order, company, category, price, search, shipping } = serachParam;
 	console.log(order, company, category, price);
 	const { categories, companies } = meta;
 	const orderBy = ["a-z", "z-a", "high", "low"];

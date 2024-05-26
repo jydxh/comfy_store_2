@@ -13,6 +13,7 @@ function SelectList({ selection, defaultValue, name, title }: SelectListProps) {
 		<div className="flex flex-col ">
 			<label htmlFor={name}>{title}</label>
 			<select
+				id={name}
 				name={name}
 				value={value}
 				onChange={evt => {

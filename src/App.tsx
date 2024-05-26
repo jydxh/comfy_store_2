@@ -3,6 +3,7 @@ import {
 	RouterProvider,
 	createHashRouter,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
 	Home,
 	Login,
@@ -20,7 +21,7 @@ import { useAppDispatch, useAppSelector } from "./hooks";
 import { setTheme } from "./features/theme/themeSlice";
 import { useEffect } from "react";
 import { loader as FeatureProductsLoader } from "@/components/home/FeatureProducts";
-import { loader as ProdcutsLoader } from "@/pages/Products";
+//import { loader as ProdcutsLoader } from "@/pages/Products";
 import { loader as SingleProductLoader } from "@/pages/SingleProduct";
 import { loader as OrdersLoader } from "@/pages/Orders";
 
@@ -37,7 +38,11 @@ const router = createHashRouter([
 		children: [
 			{ index: true, element: <Home />, loader: FeatureProductsLoader },
 			{ path: "about", element: <About /> },
-			{ path: "products", element: <Products />, loader: ProdcutsLoader },
+			{
+				path: "products",
+				element: <Products />,
+				//loader: ProdcutsLoader
+			},
 			{
 				path: "products/:id",
 				element: <SingleProduct />,
@@ -64,6 +69,8 @@ const router = createHashRouter([
 	},
 ]);
 
+const queryClient = new QueryClient();
+
 function App() {
 	const theme = useAppSelector(state => state.theme.theme);
 	const dispatch = useAppDispatch();
@@ -72,7 +79,11 @@ function App() {
 		dispatch(setTheme(theme));
 	}, [theme, dispatch]);
 
-	return <RouterProvider router={router} />;
+	return (
+		<QueryClientProvider client={queryClient}>
+			<RouterProvider router={router} />
+		</QueryClientProvider>
+	);
 }
 
 export default App;

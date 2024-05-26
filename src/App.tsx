@@ -26,7 +26,7 @@ import { action as CheckoutAction } from "@/pages/Checkout";
 
 const router = createBrowserRouter([
 	{
-		path: "/",
+		path: "/comfy_store_2/",
 		element: <Layout />,
 		errorElement: <ErrorPage />,
 		children: [
@@ -48,12 +48,12 @@ const router = createBrowserRouter([
 		],
 	},
 	{
-		path: "/login",
+		path: "/comfy_store_2/login",
 		element: <Login />,
 		action: LoginAction,
 	},
 	{
-		path: "/register",
+		path: "/comfy_store_2/register",
 		element: <Register />,
 		action: RegisterAction,
 	},

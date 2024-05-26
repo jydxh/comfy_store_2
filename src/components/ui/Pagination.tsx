@@ -73,7 +73,7 @@ function Pagination({
 				<Link
 					className="hover:underline text-blue-600 capitalize"
 					to={`${pathName}?page=1&${searchParams}`}>
-					to first page
+					1
 				</Link>
 			)}
 			<button
@@ -111,7 +111,7 @@ function Pagination({
 				<Link
 					className="hover:underline text-blue-600 capitalize"
 					to={`${pathName}?page=${pageCount}&${searchParams}`}>
-					to last page
+					{pageCount}
 				</Link>
 			)}
 		</div>

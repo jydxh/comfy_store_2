@@ -14,7 +14,7 @@ function PriceBar({
 		<>
 			<div className="flex  justify-between">
 				<p>Price</p>
-				<p>{formateToDollars(value) + ".00"}</p>
+				<p>{formateToDollars(value)}</p>
 			</div>
 			<div>
 				<input

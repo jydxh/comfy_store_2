@@ -4,6 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	base: "/redo_comfy_store/",
 	plugins: [react()],
 	resolve: {
 		alias: {

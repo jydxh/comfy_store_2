@@ -1,3 +1,5 @@
+import { CartItem } from "@/features/cart/cartSlice";
+
 export type ProductsRespone = {
 	data: Product[];
 	meta: Meta;
@@ -49,3 +51,29 @@ export type SearchParams = {
 };
 
 export type ProductsResponeWithSearchParams = SearchParams & ProductsRespone;
+
+export type OrderDatas = {
+	id: number;
+	attributes: {
+		address: string;
+		createdAt: string;
+		updatedAt: string;
+		publishedAt: string;
+		name: string;
+		orderTotal: string;
+		cartItems: CartItem[];
+		numItemsInCart: number;
+	};
+};
+
+export type OrderRespone = {
+	data: OrderDatas[];
+	meta: {
+		pagination: {
+			page: number;
+			pageSize: number;
+			pageCount: number;
+			total: number;
+		};
+	};
+};

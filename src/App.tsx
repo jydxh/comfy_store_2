@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { loader as FeatureProductsLoader } from "@/components/home/FeatureProducts";
 import { loader as ProdcutsLoader } from "@/pages/Products";
 import { loader as SingleProductLoader } from "@/pages/SingleProduct";
+import { loader as OrdersLoader } from "@/pages/Orders";
 
 import { action as RegisterAction } from "@/pages/Register";
 import { action as LoginAction } from "@/pages/Login";
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
 				element: <ProtecedCheckout />,
 				action: CheckoutAction,
 			},
-			{ path: "orders", element: <ProtecedOrders /> },
+			{ path: "orders", element: <ProtecedOrders />, loader: OrdersLoader },
 		],
 	},
 	{

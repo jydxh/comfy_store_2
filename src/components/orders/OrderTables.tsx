@@ -38,7 +38,7 @@ function OrderTables() {
 						return (
 							<tr
 								key={orders.id}
-								className={`h-14 text-center text-sm ${
+								className={`h-14 text-center text-sm dark:hover:bg-gray-700 hover:bg-slate-200 ${
 									index === pageSize - 1 ? "" : "border-b"
 								}`}>
 								<td>{name}</td>

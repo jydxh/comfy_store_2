@@ -69,7 +69,7 @@ function Pagination({
 	}
 	return (
 		<div className="mx-auto mt-28 mb-8 text-center flex justify-center items-center gap-4">
-			{pageCount > 10 && (
+			{pageCount > 10 && current !== 1 && (
 				<Link
 					className="hover:underline text-blue-600 capitalize"
 					to={`${pathName}?page=1&${searchParams}`}>
@@ -107,7 +107,7 @@ function Pagination({
 				<ArrowRight />
 			</button>
 
-			{pageCount > 10 && (
+			{pageCount > 10 && current !== pageCount && (
 				<Link
 					className="hover:underline text-blue-600 capitalize"
 					to={`${pathName}?page=${pageCount}&${searchParams}`}>

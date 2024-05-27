@@ -30,7 +30,7 @@ export const userSlice = createSlice({
 		logout(state) {
 			state.user.jwt = "";
 			state.user.username = "";
-			localStorage.setItem("user", JSON.stringify(defaultState));
+			localStorage.removeItem("user");
 		},
 	},
 });

@@ -1,14 +1,16 @@
 import { logout } from "@/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserLog() {
 	//const user = "jydxh";
 	//const user = null;
 	const { username } = useAppSelector(state => state.user.user);
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const handleLogout = () => {
 		dispatch(logout());
+		navigate("/");
 	};
 	return (
 		<div className="flex justify-center i my-4 mx-auto gap-x-12 md:justify-end max-w-[1280px] md:pe-12  ">

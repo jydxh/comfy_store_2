@@ -1,10 +1,12 @@
-import { OrderRespone } from "@/utils/types";
-import { useLoaderData } from "react-router-dom";
+import { OrderDatas } from "@/utils/types";
 
-function OrderTables() {
-	const { data, meta } = useLoaderData() as OrderRespone;
-	const { total, pageSize } = meta.pagination;
+type OrderTableSProps = {
+	orders: OrderDatas[];
+	total: number;
+	pageSize: number;
+};
 
+function OrderTables({ orders, total, pageSize }: OrderTableSProps) {
 	return (
 		<div className="mt-8">
 			<div>Total Orders: {total}</div>
@@ -22,9 +24,9 @@ function OrderTables() {
 					</tr>
 				</thead>
 				<tbody>
-					{data.map((orders, index) => {
+					{orders.map((order, index) => {
 						const { address, name, numItemsInCart, orderTotal, createdAt } =
-							orders.attributes;
+							order.attributes;
 						const date = new Date(createdAt);
 						const formateDate = (date: Date) => {
 							const options: Intl.DateTimeFormatOptions = {
@@ -37,7 +39,7 @@ function OrderTables() {
 						};
 						return (
 							<tr
-								key={orders.id}
+								key={order.id}
 								className={`h-14 text-center text-sm dark:hover:bg-gray-700 hover:bg-slate-200 ${
 									index === pageSize - 1 ? "" : "border-b"
 								}`}>

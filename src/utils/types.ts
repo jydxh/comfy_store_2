@@ -77,3 +77,7 @@ export type OrderRespone = {
 		};
 	};
 };
+
+export type OrdersParams = {
+	page: string;
+};

@@ -19,12 +19,12 @@ function Pagination({
 	const navigate = useNavigate();
 	const { pathname, search } = useLocation();
 
-	console.log("pathname:", pathname, "search:", search);
+	//console.log("pathname:", pathname, "search:", search);
 	const searchParamsObj = Object.fromEntries(
 		new URLSearchParams(search).entries()
 	);
 
-	console.log(searchParamsObj);
+	//console.log(searchParamsObj);
 	let start = 1;
 	let pageArray = Array.from({ length: pageSize }, (_, index) => start + index);
 

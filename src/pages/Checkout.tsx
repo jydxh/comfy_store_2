@@ -37,7 +37,7 @@ export const action: ActionFunction = async ({
 				"Content-Type": "application/json", // or any other content type as needed
 			},
 		});
-		console.log(res);
+		//	console.log(res);
 		return json({
 			success: `Placed the order success! Your Order ID: ${res.data.id}, please keep the ID for reference`,
 		});

@@ -12,7 +12,6 @@ function ProdcutsFilter({
 	meta: Meta;
 }) {
 	const { order, company, category, price, search, shipping } = serachParam;
-	console.log(order, company, category, price);
 	const { categories, companies } = meta;
 	const orderBy = ["a-z", "z-a", "high", "low"];
 	const [inputValue, setInputValue] = useState(search);

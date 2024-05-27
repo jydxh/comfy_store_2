@@ -19,7 +19,7 @@ export const loader: LoaderFunction =
 
 function FeatureProducts() {
 	const products = useLoaderData() as ProductsRespone;
-	console.log(products);
+
 	return <GridLayout products={products.data} />;
 }
 

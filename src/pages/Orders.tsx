@@ -19,7 +19,7 @@ export const loader: LoaderFunction = async ({
 				Authorization: `Bearer ${jwt}`,
 			},
 		});
-		console.log(res);
+		//console.log(res);
 		return res.data;
 	} catch (error) {
 		console.log(error);
@@ -30,17 +30,12 @@ export const loader: LoaderFunction = async ({
 function Orders() {
 	const { meta } = useLoaderData() as OrderRespone;
 	const { page, pageSize, total } = meta.pagination;
-	console.log("page:", page);
+
 	return (
 		<main className="mt-10 p-8 dark:text-white max-w-[1280px] mx-auto min-w-[680px]">
 			<TitleSeperate title="your orders" />
 			<OrderTables />
-			<Pagination
-				current={page}
-				pageSize={pageSize}
-				pathName="/orders"
-				totalItem={total}
-			/>
+			<Pagination current={page} pageSize={pageSize} totalItem={total} />
 		</main>
 	);
 }

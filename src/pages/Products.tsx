@@ -60,13 +60,7 @@ function Products() {
 			<main className="max-w-[1280px] mx-auto px-8 dark:text-white">
 				<ProdcutsFilter serachParam={searchParamsObj} meta={data.meta} />
 				<ProdcutsList products={data} />
-				<Pagination
-					current={page}
-					totalItem={total}
-					pageSize={pageSize}
-					pathName="/products"
-					searchParams={serachParamsString}
-				/>
+				<Pagination current={page} totalItem={total} pageSize={pageSize} />
 			</main>
 		);
 	}

@@ -6,11 +6,10 @@ import { customeFetch } from "@/utils/api";
 import { OrderRespone } from "@/utils/types";
 import { store } from "@/store";
 
-const { jwt } = store.getState().user.user;
-
 export const loader: LoaderFunction = async ({
 	request,
 }): Promise<OrderRespone | null> => {
+	const { jwt } = store.getState().user.user;
 	const params = Object.fromEntries(new URL(request.url).searchParams);
 	const url = "/orders";
 	try {

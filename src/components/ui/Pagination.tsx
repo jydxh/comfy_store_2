@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import objTosearchParams from "@/utils/objTosearchParams";
 
 const className =
 	"bg-slate-200 p-2 rounded-full hover:bg-slate-100 dark:bg-slate-700 hover:dark:bg-slate-800 disabled:bg-gray-100 disabled:hover:bg-gray-100 dark:disabled:bg-gray-500 dark:disabled:hover:bg-gray-500  ";
@@ -10,39 +11,59 @@ function Pagination({
 	current,
 	totalItem,
 	pageSize,
-	pathName,
-	searchParams,
 }: {
 	current: number;
 	totalItem: number;
 	pageSize: number;
-	pathName: string;
-	searchParams?: string;
 }) {
 	const navigate = useNavigate();
+	const { pathname, search } = useLocation();
 
+	console.log("pathname:", pathname, "search:", search);
+	const searchParamsObj = Object.fromEntries(
+		new URLSearchParams(search).entries()
+	);
+
+	console.log(searchParamsObj);
 	let start = 1;
 	let pageArray = Array.from({ length: pageSize }, (_, index) => start + index);
 
 	const pageCount = Math.ceil(totalItem / pageSize);
 
+	const navigateHeler = () => {
+		const serach = objTosearchParams(searchParamsObj);
+		navigate(`${pathname}?${serach}`);
+	};
+
 	const handleClick = (item: number) => {
 		if (current === item) return;
-		navigate(`${pathName}?page=${item}&${searchParams}`);
+		searchParamsObj["page"] = item.toString();
+		navigateHeler();
+	};
+
+	const toFirstpage = () => {
+		searchParamsObj["page"] = "1";
+		navigateHeler();
+	};
+	const toLastPage = () => {
+		searchParamsObj["page"] = pageCount.toString();
+		navigateHeler();
 	};
 
 	const handleNext = () => {
 		if (current === pageCount) {
-			navigate(`${pathName}?page=1&${searchParams}`);
+			toFirstpage();
 		} else {
-			navigate(`${pathName}?page=${current + 1}&${searchParams}`);
+			searchParamsObj["page"] = (current + 1).toString();
+			navigateHeler();
 		}
 	};
 	const handlePrev = () => {
 		if (current === 1) {
-			navigate(`${pathName}?page=${pageCount}&${searchParams}`);
+			toLastPage();
 		} else {
-			navigate(`${pathName}?page=${current - 1}&${searchParams}`);
+			searchParamsObj["page"] = (current - 1).toString();
+			navigateHeler();
 		}
 	};
 
@@ -70,11 +91,11 @@ function Pagination({
 	return (
 		<div className="mx-auto mt-28 mb-8 text-center flex justify-center items-center gap-4">
 			{current > 10 && (
-				<Link
+				<button
 					className="hover:underline text-blue-600 capitalize"
-					to={`${pathName}?page=1&${searchParams}`}>
+					onClick={toFirstpage}>
 					1
-				</Link>
+				</button>
 			)}
 			<button
 				onClick={handlePrev}
@@ -108,11 +129,11 @@ function Pagination({
 			</button>
 
 			{pageCount > 10 && current !== pageCount && (
-				<Link
+				<button
 					className="hover:underline text-blue-600 capitalize"
-					to={`${pathName}?page=${pageCount}&${searchParams}`}>
+					onClick={toLastPage}>
 					{pageCount}
-				</Link>
+				</button>
 			)}
 		</div>
 	);

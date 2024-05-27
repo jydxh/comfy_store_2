@@ -46,6 +46,7 @@ function SelectedNav() {
 								className="cursor-pointer hover:bg-slate-100  rounded-xl py-2 hover:dark:bg-slate-700 ">
 								<NavLink
 									to={href}
+									onClick={toggleSelectOptions}
 									className={({ isActive }) =>
 										isActive
 											? "text-blue-500 " + baseClass
